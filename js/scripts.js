@@ -2,6 +2,8 @@
 
 // Variable to set price
 var pizzaPrice = 0;
+// Vaiable for a new pizza
+var newPizza;
 
 // Constructor for Pizza
 function Pizza(size){
@@ -28,3 +30,32 @@ Pizza.prototype.pricing = function(){
   }
   console.log(pizzaPrice);
 };
+
+// Front End Logic
+$(document).ready(function(){
+  $("#pizza").submit(function(event){
+  event.preventDefault();
+  pizzaPrice = 0;
+
+  //Variables for pizza settings
+    var pizzaSize = $("#pizza-size option:selected").val();
+
+    if (pizzaSize == $("#small").val()) {
+      newPizza = new Pizza("small");
+    } else if (pizzaSize == $("#medium").val()) {
+      newPizza = new Pizza("medium");
+    } else if (pizzaSize == $("#large").val()) {
+      newPizza = new Pizza("large");
+    }
+
+    // Grab and push checkboxes to new piza
+    $('#toppings input:checked').each(function() {
+      newPizza.toppings.push($(this).attr('value'));
+    });
+
+    newPizza.pricing();
+
+    $("#pricing-info").text("You got a " + newPizza.size + " pizza with " + newPizza.toppings.join(", and ") + ". The price is: " + pizzaPrice)
+
+  });
+});
