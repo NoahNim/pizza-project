@@ -24,9 +24,9 @@ Pizza.prototype.pricing = function(){
   if (this.size == "large") {
     pizzaPrice += 10
   } else if (this.size == "medium") {
-    pizzaPrice += 6
+    pizzaPrice += 7
   } else if (this.size == "small") {
-    pizzaPrice += 5
+    pizzaPrice += 4
   }
   console.log(pizzaPrice);
 };
@@ -49,8 +49,8 @@ $(document).ready(function(){
     }
 
     // Grab and push checkboxes to new piza
-    $('#toppings input:checked').each(function() {
-      newPizza.toppings.push($(this).attr('value'));
+    $("#toppings input:checked").each(function() {
+      newPizza.toppings.push($(this).attr("value"));
     });
 
     newPizza.pricing();
